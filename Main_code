@@ -1,0 +1,43 @@
+import openai
+import streamlit as st
+import json
+import pandas as pd
+
+# Get the API key from the sidebar called OpenAI API key
+user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
+
+#user_api_key = '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'
+client = openai.OpenAI(api_key=user_api_key)
+prompt = """Act as a translator. These following texts are Korean lyrics with some English words.
+Translate the Korean lyrics into English. The English words are already translated. Then translate translated lyrics into Thai. 
+Give me a jason file with the Korean original lyrics, English translated lyrics and Thai translated lyrics.
+Make sure that the translated lyrics are grammatically correct and informal"""
+
+st.title("Onnie's kasa")
+st.markdown("Input Korean lyrics here to see the translation of this song in English and Thai.")
+user_input = st.text_area("Enter Korean lyrics here:", "Your text here")
+
+# submit button after text input
+if st.button('Submit'):
+    messages_so_far = [
+        {"role": "system", "content": prompt},
+        {'role': 'user', 'content': user_input},
+    ]
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=messages_so_far
+    )
+    
+    
+
+    # Show the response from the AI in a box
+    st.markdown('**AI response:**')
+    suggestion_dictionary = response.choices[0].message.content
+
+
+    sd = json.loads(suggestion_dictionary)
+
+    print (sd)
+    suggestion_df = pd.DataFrame.from_dict(sd)
+    print(suggestion_df)
+    st.table(suggestion_df)
