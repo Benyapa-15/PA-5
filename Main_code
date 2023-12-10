@@ -6,7 +6,6 @@ import pandas as pd
 # Get the API key from the sidebar called OpenAI API key
 user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
 
-#user_api_key = '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'
 client = openai.OpenAI(api_key=user_api_key)
 prompt = """Act as a translator. These following texts are Korean lyrics with some English words.
 Translate the Korean lyrics into English. The English words are already translated. Then translate translated lyrics into Thai. 
