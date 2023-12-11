@@ -25,13 +25,13 @@ prompt = """Act as a Korean-English-Thai translator. You will receive a
                 {
                     "Korean Original Text": "안녕하세요. 저는 한국어를 배우고 있습니다.",
                     "English Translation": "Hello. I am learning Korean.",
-                    "Thai Translation from Korean text": "สวัสดีค่ะ ฉันกำลังเรียนภาษาเกาหลี"
+                    "Thai Translation from Korean text": "สวัสดีค่ะ ฉันกำลังเรียนภาษาเกาหลีอยู่ค่ะ"
                     "Thai Translation from English text": "สวัสดีค่ะ ฉันกำลังเรียนภาษาเกาหลี"
                 },
                 {
                     "Korean Original Text": "안녕하세요. 저는 한국어를 배우고 있습니다.",
                     "English Translation": "Hello. I am learning Korean.",
-                    "Thai Translation": "สวัสดีค่ะ ฉันกำลังเรียนภาษาเกาหลี"
+                    "Thai Translation from Korean text": "สวัสดีค่ะ ฉันกำลังเรียนภาษาเกาหลีอยู่ค่ะ"
                     "Thai Translation from English text": "สวัสดีค่ะ ฉันกำลังเรียนภาษาเกาหลี"
                 }
             ]
@@ -40,8 +40,10 @@ prompt = """Act as a Korean-English-Thai translator. You will receive a
 
 st.title('We go Korean')
 st.subheader('Korean-English-Thai translator')
-st.markdown('Input the text that you want to translate. \n\
-            The AI will translate it for you.')
+st.markdown('Input the Korean text that you want to translate. \n\
+            The AI will translate it for you. \n\
+            Korean lyrics with some English words are also welcome here. \n\
+            Enjoy!')
 
 user_input = st.text_area("Enter some text to correct:", "Your text here")
 
